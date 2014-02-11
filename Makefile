@@ -1,4 +1,4 @@
-default: backtrack.bin
+default: backtrack
 
-backtrack.bin:
+backtrack:
 	gcc -std=c11 -O3 backtrack.c -o backtrack.bin

@@ -94,13 +94,22 @@ int main(int argc, char** argv) {
     queens = malloc(2 * SIZE * sizeof(int));
 
     clock_t start = clock();
-    next();
+    int result = next();
     clock_t end = clock();
     float seconds = (float)(end - start) / CLOCKS_PER_SEC * 1000;
 
-    printf("Found solution in %.5f ms:\n", seconds);
+    if(result) {
+        printf("Found solution in %.3f ms:\n", seconds);
+        printField();
+    } else {
+        printf("No solution found after %.3f ms.\n", seconds);
+        if(SIZE != 2 && SIZE != 3) {
+            printf("Too bad, this should only be the case for a size of 2 or 3... Must be a bug :O\n");
+        } else {
+            printf("That's because there is no solution for size 2 or 3.\n");
+        }
+    }
 
-    printField();
     free(queens);
     return 0;
 }
